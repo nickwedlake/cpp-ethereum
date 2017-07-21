@@ -27,6 +27,7 @@
 #include <iterator>
 #include <iosfwd>
 #include <assert.h>
+#include <algorithm>
 
 namespace dev
 {
