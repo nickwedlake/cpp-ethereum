@@ -24,6 +24,9 @@
 
 #pragma once
 
+#include <boost/exception/info.hpp>
+#include <iosfwd>
+
 namespace dev
 {
 
