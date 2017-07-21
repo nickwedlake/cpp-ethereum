@@ -116,11 +116,12 @@ private:
 class SimpleAccountHolder: public AccountHolder
 {
 public:
-	SimpleAccountHolder(std::function<Interface*()> const& _client, std::function<std::string(Address)> const& _getPassword, KeyManager& _keyman, std::function<bool(TransactionSkeleton const&, bool)> _getAuthorisation = std::function<bool(TransactionSkeleton const&, bool)>()):
+	SimpleAccountHolder(std::function<Interface*()> const& _client, std::function<std::string(Address)> const& _getPassword, KeyManager& _keyman, std::function<bool(TransactionSkeleton const&, bool)> _getAuthorisation = std::function<bool(TransactionSkeleton const&, bool)>(), bool _testingMode = false):
 		AccountHolder(_client),
 		m_getPassword(_getPassword),
 		m_getAuthorisation(_getAuthorisation),
-		m_keyManager(_keyman)
+		m_keyManager(_keyman),
+		m_testingMode(_testingMode)
 	{}
 
 	AddressHash realAccounts() const override;
@@ -135,6 +136,7 @@ private:
 	std::function<std::string(Address)> m_getPassword;
 	std::function<bool(TransactionSkeleton const&, bool)> m_getAuthorisation;
 	KeyManager& m_keyManager;
+	bool const m_testingMode;
 	std::map<Address, std::pair<std::chrono::steady_clock::time_point, unsigned>> m_unlockedAccounts;
 };
 
